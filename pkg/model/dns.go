@@ -5,6 +5,7 @@ import (
 	"net"
 	"time"
 
+	"github.com/WangYihang/dns-grab/pkg/util"
 	"github.com/miekg/dns"
 )
 
@@ -76,6 +77,18 @@ func (q ReadableQuestion) MarshalJSON() ([]byte, error) {
 		QClass string `json:"qclass"`
 	}{
 		Name:   q.Name,
+		QType:  dns.TypeToString[q.Qtype],
+		QClass: dns.ClassToString[q.Qclass],
+	})
+}
+
+func (q ReadableQuestion) MarshalBSON() ([]byte, error) {
+	return json.Marshal(&struct {
+		Name   string `json:"name_reverse"`
+		QType  string `json:"qtype"`
+		QClass string `json:"qclass"`
+	}{
+		Name:   util.ReverseString(q.Name),
 		QType:  dns.TypeToString[q.Qtype],
 		QClass: dns.ClassToString[q.Qclass],
 	})
