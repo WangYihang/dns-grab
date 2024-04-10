@@ -1,6 +1,9 @@
 package model
 
 import (
+	"net"
+	"strings"
+
 	"github.com/miekg/dns"
 )
 
@@ -29,12 +32,16 @@ func WithQNAME(qname string) func(*Task) {
 
 func WithQTYPE(qtype string) func(*Task) {
 	return func(t *Task) {
-		t.QTYPE = qtype
+		t.QTYPE = strings.ToUpper(qtype)
 	}
 }
 
 func WithResolver(resolver string) func(*Task) {
 	return func(t *Task) {
+		// check if port is appended, append if not
+		if _, _, err := net.SplitHostPort(resolver); err != nil {
+			resolver = net.JoinHostPort(resolver, "53")
+		}
 		t.Resolver = resolver
 	}
 }
