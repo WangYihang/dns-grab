@@ -4,7 +4,7 @@ import (
 	"os"
 	"time"
 
-	"github.com/WangYihang/dns-grab/pkg/loaders"
+	"github.com/WangYihang/dns-grab/pkg/loader"
 	"github.com/WangYihang/dns-grab/pkg/model"
 	"github.com/WangYihang/dns-grab/pkg/option"
 	"github.com/WangYihang/gojob"
@@ -29,7 +29,7 @@ func main() {
 		SetMaxRuntimePerTaskSeconds(Opt.MaxRuntimePerTaskSeconds).
 		SetNumShards(int64(Opt.NumShards)).
 		SetShard(int64(Opt.Shard)).
-		SetTotalTasks(utils.Count(loaders.Get(Opt.InputFilePath, "txt"))).
+		SetTotalTasks(utils.Count(loader.Get(Opt.InputFilePath, "txt"))).
 		SetOutputFilePath(Opt.OutputFilePath).
 		SetMetadata("build", map[string]string{
 			"version": model.Version,
