@@ -1,5 +1,7 @@
 github.com/WangYihang/gojob v0.0.10 h1:/uk84xREArkI1ar3y2rnZCm9aVFK/WVv4a8gtBsuFBs=
 github.com/WangYihang/gojob v0.0.10/go.mod h1:snH4Z/zR9PXav6FvJTDdp6ZGUAK+MJSemxYqEPq0oys=
+github.com/WangYihang/gojob v0.0.11-0.20240410041222-85b434163c45 h1:dnIKdwNtpJA4gx42RxXVHVCxI72K+WpGwEo8RfjKwKo=
+github.com/WangYihang/gojob v0.0.11-0.20240410041222-85b434163c45/go.mod h1:snH4Z/zR9PXav6FvJTDdp6ZGUAK+MJSemxYqEPq0oys=
 github.com/google/uuid v1.6.0 h1:NIvaJDMOsjHA8n1jAhLSgzrAzy1Hgr+hNrb57e+94F0=
 github.com/google/uuid v1.6.0/go.mod h1:TIyPZe4MgqvfeYDBFedMoGGpEw/LqOeaOT+nhxU+yHo=
 github.com/jessevdk/go-flags v1.5.0 h1:1jKYvbxEjfUl0fmqTCOfonvskHHXMjBySTLW4y9LFvc=

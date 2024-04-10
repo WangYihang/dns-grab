@@ -8,6 +8,7 @@ import (
 	"github.com/WangYihang/dns-grab/pkg/model"
 	"github.com/WangYihang/dns-grab/pkg/option"
 	"github.com/WangYihang/gojob"
+	"github.com/WangYihang/gojob/pkg/runner"
 	"github.com/WangYihang/gojob/pkg/utils"
 	"github.com/jessevdk/go-flags"
 )
@@ -35,7 +36,7 @@ func main() {
 			"commit":  model.Commit,
 			"date":    model.Date,
 		}).
-		SetMetadata("runner", model.Runner).
+		SetMetadata("runner", runner.Runner).
 		SetMetadata("arguments", Opt).
 		SetMetadata("started_at", time.Now().Format(time.RFC3339)).
 		Start()
