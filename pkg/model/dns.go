@@ -89,171 +89,204 @@ func (rr ReadableRR) MarshalJSON() ([]byte, error) {
 	switch t := rr.RR.(type) {
 	case *dns.A:
 		return json.Marshal(&struct {
-			RType string `json:"rtype"`
-			RName string `json:"rname"`
-			A     net.IP `json:"a"`
+			RType        string `json:"rtype"`
+			RName        string `json:"rname"`
+			RNameReverse string `json:"rname_reverse"`
+			A            net.IP `json:"a"`
 		}{
-			RType: rrType,
-			RName: t.Hdr.Name,
-			A:     t.A,
+			RType:        rrType,
+			RName:        t.Hdr.Name,
+			RNameReverse: util.ReverseString(t.Hdr.Name),
+			A:            t.A,
 		})
 	case *dns.AAAA:
 		return json.Marshal(&struct {
-			RType string `json:"rtype"`
-			RName string `json:"rname"`
-			AAAA  net.IP `json:"aaaa"`
+			RType        string `json:"rtype"`
+			RName        string `json:"rname"`
+			RNameReverse string `json:"rname_reverse"`
+			AAAA         net.IP `json:"aaaa"`
 		}{
-			RType: rrType,
-			RName: t.Hdr.Name,
-			AAAA:  t.AAAA,
+			RType:        rrType,
+			RName:        t.Hdr.Name,
+			RNameReverse: util.ReverseString(t.Hdr.Name),
+			AAAA:         t.AAAA,
 		})
 	case *dns.CNAME:
 		return json.Marshal(&struct {
-			RType string `json:"rtype"`
-			RName string `json:"rname"`
-			CNAME string `json:"cname"`
+			RType        string `json:"rtype"`
+			RName        string `json:"rname"`
+			RNameReverse string `json:"rname_reverse"`
+			CNAME        string `json:"cname"`
+			CNAMEReverse string `json:"cname_reverse"`
 		}{
-			RType: rrType,
-			RName: t.Hdr.Name,
-			CNAME: t.Target,
+			RType:        rrType,
+			RName:        t.Hdr.Name,
+			RNameReverse: util.ReverseString(t.Hdr.Name),
+			CNAME:        t.Target,
+			CNAMEReverse: util.ReverseString(t.Target),
 		})
 	case *dns.SOA:
 		return json.Marshal(&struct {
-			RType   string `json:"rtype"`
-			RName   string `json:"rname"`
-			NS      string `json:"ns"`
-			Mbox    string `json:"mbox"`
-			Serial  uint32 `json:"serial"`
-			Refresh uint32 `json:"refresh"`
-			Retry   uint32 `json:"retry"`
-			Expire  uint32 `json:"expire"`
-			MinTTL  uint32 `json:"min_ttl"`
+			RType        string `json:"rtype"`
+			RName        string `json:"rname"`
+			RNameReverse string `json:"rname_reverse"`
+			NS           string `json:"ns"`
+			NSReverse    string `json:"ns_reverse"`
+			Mbox         string `json:"mbox"`
+			MBoxReverse  string `json:"mbox_reverse"`
+			Serial       uint32 `json:"serial"`
+			Refresh      uint32 `json:"refresh"`
+			Retry        uint32 `json:"retry"`
+			Expire       uint32 `json:"expire"`
+			MinTTL       uint32 `json:"min_ttl"`
 		}{
-			RType:   rrType,
-			RName:   t.Hdr.Name,
-			NS:      t.Ns,
-			Mbox:    t.Mbox,
-			Serial:  t.Serial,
-			Refresh: t.Refresh,
-			Retry:   t.Retry,
-			Expire:  t.Expire,
-			MinTTL:  t.Minttl,
+			RType:        rrType,
+			RName:        t.Hdr.Name,
+			RNameReverse: util.ReverseString(t.Hdr.Name),
+			NS:           t.Ns,
+			NSReverse:    util.ReverseString(t.Ns),
+			Mbox:         t.Mbox,
+			MBoxReverse:  util.ReverseString(t.Mbox),
+			Serial:       t.Serial,
+			Refresh:      t.Refresh,
+			Retry:        t.Retry,
+			Expire:       t.Expire,
+			MinTTL:       t.Minttl,
 		})
 	case *dns.NS:
 		return json.Marshal(&struct {
-			RType string `json:"rtype"`
-			RName string `json:"rname"`
-			NS    string `json:"ns"`
+			RType        string `json:"rtype"`
+			RName        string `json:"rname"`
+			RNameReverse string `json:"rname_reverse"`
+			NS           string `json:"ns"`
+			NSReverse    string `json:"ns_reverse"`
 		}{
-			RType: rrType,
-			RName: t.Hdr.Name,
-			NS:    t.Ns,
+			RType:        rrType,
+			RName:        t.Hdr.Name,
+			RNameReverse: util.ReverseString(t.Hdr.Name),
+			NS:           t.Ns,
+			NSReverse:    util.ReverseString(t.Ns),
 		})
 	case *dns.TXT:
 		return json.Marshal(&struct {
-			RType string   `json:"rtype"`
-			RName string   `json:"rname"`
-			TXT   []string `json:"txt"`
+			RType        string   `json:"rtype"`
+			RName        string   `json:"rname"`
+			RNameReverse string   `json:"rname_reverse"`
+			TXT          []string `json:"txt"`
 		}{
-			RType: rrType,
-			RName: t.Hdr.Name,
-			TXT:   t.Txt,
+			RType:        rrType,
+			RName:        t.Hdr.Name,
+			RNameReverse: util.ReverseString(t.Hdr.Name),
+			TXT:          t.Txt,
 		})
 	case *dns.MX:
 		return json.Marshal(&struct {
-			Type     string `json:"type"`
-			Name     string `json:"name"`
+			RType        string `json:"rtype"`
+			RName        string `json:"rname"`
+			RNameReverse string `json:"rname_reverse"`
+
 			Priority uint16 `json:"priority"`
 			Mx       string `json:"mx"`
 		}{
-			Type:     rrType,
-			Name:     t.Hdr.Name,
-			Priority: t.Preference,
-			Mx:       t.Mx,
+			RType:        rrType,
+			RName:        t.Hdr.Name,
+			RNameReverse: util.ReverseString(t.Hdr.Name),
+			Priority:     t.Preference,
+			Mx:           t.Mx,
 		})
 	case *dns.PTR:
 		return json.Marshal(&struct {
-			Type string `json:"type"`
-			Name string `json:"name"`
-			Ptr  string `json:"ptr"`
+			RType        string `json:"rtype"`
+			RName        string `json:"rname"`
+			RNameReverse string `json:"rname_reverse"`
+			Ptr          string `json:"ptr"`
 		}{
-			Type: rrType,
-			Name: t.Hdr.Name,
-			Ptr:  t.Ptr,
+			RType:        rrType,
+			RName:        t.Hdr.Name,
+			RNameReverse: util.ReverseString(t.Hdr.Name),
+			Ptr:          t.Ptr,
 		})
 	case *dns.SRV:
 		return json.Marshal(&struct {
-			Type     string `json:"type"`
-			Name     string `json:"name"`
-			Priority uint16 `json:"priority"`
-			Weight   uint16 `json:"weight"`
-			Port     uint16 `json:"port"`
-			Target   string `json:"target"`
+			RType        string `json:"rtype"`
+			RName        string `json:"rname"`
+			RNameReverse string `json:"rname_reverse"`
+			Priority     uint16 `json:"priority"`
+			Weight       uint16 `json:"weight"`
+			Port         uint16 `json:"port"`
+			Target       string `json:"target"`
 		}{
-			Type:     rrType,
-			Name:     t.Hdr.Name,
-			Priority: t.Priority,
-			Weight:   t.Weight,
-			Port:     t.Port,
-			Target:   t.Target,
+			RType:        rrType,
+			RName:        t.Hdr.Name,
+			RNameReverse: util.ReverseString(t.Hdr.Name),
+			Priority:     t.Priority,
+			Weight:       t.Weight,
+			Port:         t.Port,
+			Target:       t.Target,
 		})
 	case *dns.DNSKEY:
 		return json.Marshal(&struct {
-			Type      string `json:"type"`
-			Name      string `json:"name"`
-			Flags     uint16 `json:"flags"`
-			Protocol  uint8  `json:"protocol"`
-			Algorithm uint8  `json:"algorithm"`
-			PublicKey string `json:"public_key"`
+			RType        string `json:"rtype"`
+			RName        string `json:"rname"`
+			RNameReverse string `json:"rname_reverse"`
+			Flags        uint16 `json:"flags"`
+			Protocol     uint8  `json:"protocol"`
+			Algorithm    uint8  `json:"algorithm"`
+			PublicKey    string `json:"public_key"`
 		}{
-			Type:      rrType,
-			Name:      t.Hdr.Name,
-			Flags:     t.Flags,
-			Protocol:  t.Protocol,
-			Algorithm: t.Algorithm,
-			PublicKey: t.PublicKey,
+			RType:        rrType,
+			RName:        t.Hdr.Name,
+			RNameReverse: util.ReverseString(t.Hdr.Name),
+			Flags:        t.Flags,
+			Protocol:     t.Protocol,
+			Algorithm:    t.Algorithm,
+			PublicKey:    t.PublicKey,
 		})
 	case *dns.RRSIG:
 		return json.Marshal(&struct {
-			Type       string `json:"type"`
-			Name       string `json:"name"`
-			Algorithm  uint8  `json:"algorithm"`
-			Labels     uint8  `json:"labels"`
-			OrigTtl    uint32 `json:"orig_ttl"`
-			Expiration uint32 `json:"expiration"`
-			Inception  uint32 `json:"inception"`
-			KeyTag     uint16 `json:"key_tag"`
-			SignerName string `json:"signer_name"`
-			Signature  string `json:"signature"`
+			RType        string `json:"rtype"`
+			RName        string `json:"rname"`
+			RNameReverse string `json:"rname_reverse"`
+			Algorithm    uint8  `json:"algorithm"`
+			Labels       uint8  `json:"labels"`
+			OrigTtl      uint32 `json:"orig_ttl"`
+			Expiration   uint32 `json:"expiration"`
+			Inception    uint32 `json:"inception"`
+			KeyTag       uint16 `json:"key_tag"`
+			SignerName   string `json:"signer_name"`
+			Signature    string `json:"signature"`
 		}{
-			Type:       rrType,
-			Name:       t.Hdr.Name,
-			Algorithm:  t.Algorithm,
-			Labels:     t.Labels,
-			OrigTtl:    t.OrigTtl,
-			Expiration: t.Expiration,
-			Inception:  t.Inception,
-			KeyTag:     t.KeyTag,
-			SignerName: t.SignerName,
-			Signature:  t.Signature,
+			RType:        rrType,
+			RName:        t.Hdr.Name,
+			RNameReverse: util.ReverseString(t.Hdr.Name),
+			Algorithm:    t.Algorithm,
+			Labels:       t.Labels,
+			OrigTtl:      t.OrigTtl,
+			Expiration:   t.Expiration,
+			Inception:    t.Inception,
+			KeyTag:       t.KeyTag,
+			SignerName:   t.SignerName,
+			Signature:    t.Signature,
 		})
 	case *dns.NAPTR:
 		return json.Marshal(&struct {
-			Type        string `json:"type"`
-			Name        string `json:"name"`
-			Order       uint16 `json:"order"`
-			Preference  uint16 `json:"preference"`
-			Flags       string `json:"flags"`
-			Regexp      string `json:"regexp"`
-			Replacement string `json:"replacement"`
+			RType        string `json:"rtype"`
+			RName        string `json:"rname"`
+			RNameReverse string `json:"rname_reverse"`
+			Order        uint16 `json:"order"`
+			Preference   uint16 `json:"preference"`
+			Flags        string `json:"flags"`
+			Regexp       string `json:"regexp"`
+			Replacement  string `json:"replacement"`
 		}{
-			Type:        rrType,
-			Name:        t.Hdr.Name,
-			Order:       t.Order,
-			Preference:  t.Preference,
-			Flags:       t.Flags,
-			Regexp:      t.Regexp,
-			Replacement: t.Replacement,
+			RType:        rrType,
+			RName:        t.Hdr.Name,
+			RNameReverse: util.ReverseString(t.Hdr.Name),
+			Order:        t.Order,
+			Preference:   t.Preference,
+			Flags:        t.Flags,
+			Regexp:       t.Regexp,
+			Replacement:  t.Replacement,
 		})
 	default:
 		return json.Marshal(&struct {
