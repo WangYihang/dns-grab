@@ -3,7 +3,7 @@ module github.com/WangYihang/dns-grab
 go 1.22.0
 
 require (
-	github.com/WangYihang/gojob v0.0.11
+	github.com/WangYihang/gojob v0.0.12-0.20240420120557-89b7b6fd4536
 	github.com/jessevdk/go-flags v1.5.0
 	github.com/miekg/dns v1.1.58
 )
