@@ -1,5 +1,8 @@
 # DNS Grab
 
+[![Go Reference](https://pkg.go.dev/badge/github.com/WangYihang/dns-grab.svg)](https://pkg.go.dev/github.com/WangYihang/dns-grab)
+[![Go Report Card](https://goreportcard.com/badge/github.com/WangYihang/dns-grab)](https://goreportcard.com/report/github.com/WangYihang/dns-grab)
+
 ## Description
 
 `dns-grab` is a tool for doing DNS queries from a list of domain names.
