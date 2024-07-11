@@ -28,8 +28,10 @@ func main() {
 		gojob.WithMaxRuntimePerTaskSeconds(Opt.MaxRuntimePerTaskSeconds),
 		gojob.WithNumShards(int64(Opt.NumShards)),
 		gojob.WithShard(int64(Opt.Shard)),
-		gojob.WithTotalTasks(utils.Count(utils.Cat(Opt.InputFilePath))),
 		gojob.WithResultFilePath(Opt.OutputFilePath),
+		gojob.WithStatusFilePath(Opt.StatusFilePath),
+		gojob.WithMetadataFilePath(Opt.MetadataFilePath),
+		gojob.WithTotalTasks(utils.Count(utils.Cat(Opt.InputFilePath))),
 		gojob.WithMetadata("build", map[string]string{
 			"version": model.Version,
 			"commit":  model.Commit,
