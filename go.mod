@@ -3,13 +3,13 @@ module github.com/WangYihang/dns-grab
 go 1.22.6
 
 require (
-	github.com/WangYihang/gojob v0.0.11-0.20240829153646-0409504d776f
+	github.com/WangYihang/gojob v0.0.11-0.20240905152900-36da724ca9ae
 	github.com/jessevdk/go-flags v1.5.0
 	github.com/miekg/dns v1.1.58
 )
 
 require (
-	github.com/WangYihang/uio v0.0.0-20240829150037-ce8fff04fa48 // indirect
+	github.com/WangYihang/uio v0.0.0-20240905152743-19ba2df5e6a6 // indirect
 	github.com/beorn7/perks v1.0.1 // indirect
 	github.com/caarlos0/env v3.5.0+incompatible // indirect
 	github.com/cespare/xxhash/v2 v2.2.0 // indirect
@@ -29,9 +29,9 @@ require (
 	golang.org/x/crypto v0.24.0 // indirect
 	golang.org/x/mod v0.17.0 // indirect
 	golang.org/x/net v0.26.0 // indirect
+	golang.org/x/sync v0.7.0 // indirect
 	golang.org/x/sys v0.21.0 // indirect
 	golang.org/x/text v0.16.0 // indirect
 	golang.org/x/tools v0.21.1-0.20240508182429-e35e4ccd0d2d // indirect
 	google.golang.org/protobuf v1.33.0 // indirect
-	gopkg.in/ini.v1 v1.67.0 // indirect
 )
