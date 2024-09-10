@@ -14,6 +14,7 @@ type Option struct {
 
 	QType    string `long:"qtype" description:"qtype" default:"A"`
 	Resolver string `long:"resolver" description:"resolver" default:"8.8.8.8:53"`
+	Timeout  int64  `long:"timeout" description:"timeout" default:"4"`
 
 	Version func() `long:"version" description:"print version and exit" json:"-"`
 }

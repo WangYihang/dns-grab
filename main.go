@@ -48,6 +48,7 @@ func main() {
 				model.WithQNAME(line),
 				model.WithQTYPE(Opt.QType),
 				model.WithResolver(Opt.Resolver),
+				model.WithTimeout(Opt.Timeout),
 			),
 		)
 	}

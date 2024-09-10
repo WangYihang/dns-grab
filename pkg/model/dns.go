@@ -3,19 +3,12 @@ package model
 import (
 	"encoding/json"
 	"net"
-	"time"
 
 	"github.com/WangYihang/dns-grab/pkg/util"
 	"github.com/miekg/dns"
 )
 
-var DNSClient *dns.Client
-
-func init() {
-	DNSClient = new(dns.Client)
-	DNSClient.Net = "udp"
-	DNSClient.Timeout = 8 * time.Second
-}
+var DNSClient dns.Client
 
 type DNS struct {
 	Request  *ReadableMsg `json:"request"`

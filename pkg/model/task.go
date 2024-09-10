@@ -3,6 +3,7 @@ package model
 import (
 	"net"
 	"strings"
+	"time"
 
 	"github.com/miekg/dns"
 )
@@ -11,6 +12,7 @@ type Task struct {
 	QNAME    string `json:"qname"`
 	QTYPE    string `json:"qtype"`
 	Resolver string `json:"resolver"`
+	Timeout  int64  `json:"timeout"`
 	DNS      DNS    `json:"dns"`
 }
 
@@ -46,10 +48,17 @@ func WithResolver(resolver string) func(*Task) {
 	}
 }
 
+func WithTimeout(timeout int64) func(*Task) {
+	return func(t *Task) {
+		t.Timeout = timeout
+	}
+}
+
 func (t *Task) Do() error {
 	query := new(dns.Msg)
 	query.SetQuestion(dns.Fqdn(t.QNAME), dns.StringToType[t.QTYPE])
 	t.DNS.Request = NewReadableMsg(query)
+	DNSClient.Timeout = time.Second * time.Duration(t.Timeout)
 	answer, _, err := DNSClient.Exchange(query, t.Resolver)
 	if err != nil {
 		return err
