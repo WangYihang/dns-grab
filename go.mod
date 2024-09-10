@@ -3,13 +3,13 @@ module github.com/WangYihang/dns-grab
 go 1.22.6
 
 require (
-	github.com/WangYihang/gojob v0.0.11-0.20240906041020-093ee12cfc66
+	github.com/WangYihang/gojob v0.0.11-0.20240910061806-66ed0ba94af3
 	github.com/jessevdk/go-flags v1.5.0
 	github.com/miekg/dns v1.1.58
 )
 
 require (
-	github.com/WangYihang/uio v0.0.0-20240906040721-305cfedd121a // indirect
+	github.com/WangYihang/uio v0.0.0-20240910061712-086a0337cd43 // indirect
 	github.com/beorn7/perks v1.0.1 // indirect
 	github.com/caarlos0/env v3.5.0+incompatible // indirect
 	github.com/cespare/xxhash/v2 v2.2.0 // indirect
