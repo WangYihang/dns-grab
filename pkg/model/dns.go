@@ -86,11 +86,13 @@ func (rr ReadableRR) MarshalJSON() ([]byte, error) {
 			RName        string `json:"rname"`
 			RNameReverse string `json:"rname_reverse"`
 			A            net.IP `json:"a"`
+			Ttl          uint32 `json:"ttl"`
 		}{
 			RType:        rrType,
 			RName:        t.Hdr.Name,
 			RNameReverse: util.ReverseString(t.Hdr.Name),
 			A:            t.A,
+			Ttl:          t.Hdr.Ttl,
 		})
 	case *dns.AAAA:
 		return json.Marshal(&struct {
@@ -98,11 +100,13 @@ func (rr ReadableRR) MarshalJSON() ([]byte, error) {
 			RName        string `json:"rname"`
 			RNameReverse string `json:"rname_reverse"`
 			AAAA         net.IP `json:"aaaa"`
+			Ttl          uint32 `json:"ttl"`
 		}{
 			RType:        rrType,
 			RName:        t.Hdr.Name,
 			RNameReverse: util.ReverseString(t.Hdr.Name),
 			AAAA:         t.AAAA,
+			Ttl:          t.Hdr.Ttl,
 		})
 	case *dns.CNAME:
 		return json.Marshal(&struct {
@@ -111,12 +115,14 @@ func (rr ReadableRR) MarshalJSON() ([]byte, error) {
 			RNameReverse string `json:"rname_reverse"`
 			CNAME        string `json:"cname"`
 			CNAMEReverse string `json:"cname_reverse"`
+			Ttl          uint32 `json:"ttl"`
 		}{
 			RType:        rrType,
 			RName:        t.Hdr.Name,
 			RNameReverse: util.ReverseString(t.Hdr.Name),
 			CNAME:        t.Target,
 			CNAMEReverse: util.ReverseString(t.Target),
+			Ttl:          t.Hdr.Ttl,
 		})
 	case *dns.SOA:
 		return json.Marshal(&struct {
@@ -132,6 +138,7 @@ func (rr ReadableRR) MarshalJSON() ([]byte, error) {
 			Retry        uint32 `json:"retry"`
 			Expire       uint32 `json:"expire"`
 			MinTTL       uint32 `json:"min_ttl"`
+			Ttl          uint32 `json:"ttl"`
 		}{
 			RType:        rrType,
 			RName:        t.Hdr.Name,
@@ -145,6 +152,7 @@ func (rr ReadableRR) MarshalJSON() ([]byte, error) {
 			Retry:        t.Retry,
 			Expire:       t.Expire,
 			MinTTL:       t.Minttl,
+			Ttl:          t.Hdr.Ttl,
 		})
 	case *dns.NS:
 		return json.Marshal(&struct {
@@ -153,12 +161,14 @@ func (rr ReadableRR) MarshalJSON() ([]byte, error) {
 			RNameReverse string `json:"rname_reverse"`
 			NS           string `json:"ns"`
 			NSReverse    string `json:"ns_reverse"`
+			Ttl          uint32 `json:"ttl"`
 		}{
 			RType:        rrType,
 			RName:        t.Hdr.Name,
 			RNameReverse: util.ReverseString(t.Hdr.Name),
 			NS:           t.Ns,
 			NSReverse:    util.ReverseString(t.Ns),
+			Ttl:          t.Hdr.Ttl,
 		})
 	case *dns.TXT:
 		return json.Marshal(&struct {
@@ -166,11 +176,13 @@ func (rr ReadableRR) MarshalJSON() ([]byte, error) {
 			RName        string   `json:"rname"`
 			RNameReverse string   `json:"rname_reverse"`
 			TXT          []string `json:"txt"`
+			Ttl          uint32   `json:"ttl"`
 		}{
 			RType:        rrType,
 			RName:        t.Hdr.Name,
 			RNameReverse: util.ReverseString(t.Hdr.Name),
 			TXT:          t.Txt,
+			Ttl:          t.Hdr.Ttl,
 		})
 	case *dns.MX:
 		return json.Marshal(&struct {
@@ -180,12 +192,14 @@ func (rr ReadableRR) MarshalJSON() ([]byte, error) {
 
 			Priority uint16 `json:"priority"`
 			Mx       string `json:"mx"`
+			Ttl      uint32 `json:"ttl"`
 		}{
 			RType:        rrType,
 			RName:        t.Hdr.Name,
 			RNameReverse: util.ReverseString(t.Hdr.Name),
 			Priority:     t.Preference,
 			Mx:           t.Mx,
+			Ttl:          t.Hdr.Ttl,
 		})
 	case *dns.PTR:
 		return json.Marshal(&struct {
@@ -193,11 +207,13 @@ func (rr ReadableRR) MarshalJSON() ([]byte, error) {
 			RName        string `json:"rname"`
 			RNameReverse string `json:"rname_reverse"`
 			Ptr          string `json:"ptr"`
+			Ttl          uint32 `json:"ttl"`
 		}{
 			RType:        rrType,
 			RName:        t.Hdr.Name,
 			RNameReverse: util.ReverseString(t.Hdr.Name),
 			Ptr:          t.Ptr,
+			Ttl:          t.Hdr.Ttl,
 		})
 	case *dns.SRV:
 		return json.Marshal(&struct {
@@ -208,6 +224,7 @@ func (rr ReadableRR) MarshalJSON() ([]byte, error) {
 			Weight       uint16 `json:"weight"`
 			Port         uint16 `json:"port"`
 			Target       string `json:"target"`
+			Ttl          uint32 `json:"ttl"`
 		}{
 			RType:        rrType,
 			RName:        t.Hdr.Name,
@@ -216,6 +233,7 @@ func (rr ReadableRR) MarshalJSON() ([]byte, error) {
 			Weight:       t.Weight,
 			Port:         t.Port,
 			Target:       t.Target,
+			Ttl:          t.Hdr.Ttl,
 		})
 	case *dns.DNSKEY:
 		return json.Marshal(&struct {
@@ -226,6 +244,7 @@ func (rr ReadableRR) MarshalJSON() ([]byte, error) {
 			Protocol     uint8  `json:"protocol"`
 			Algorithm    uint8  `json:"algorithm"`
 			PublicKey    string `json:"public_key"`
+			Ttl          uint32 `json:"ttl"`
 		}{
 			RType:        rrType,
 			RName:        t.Hdr.Name,
@@ -234,6 +253,7 @@ func (rr ReadableRR) MarshalJSON() ([]byte, error) {
 			Protocol:     t.Protocol,
 			Algorithm:    t.Algorithm,
 			PublicKey:    t.PublicKey,
+			Ttl:          t.Hdr.Ttl,
 		})
 	case *dns.RRSIG:
 		return json.Marshal(&struct {
@@ -248,6 +268,7 @@ func (rr ReadableRR) MarshalJSON() ([]byte, error) {
 			KeyTag       uint16 `json:"key_tag"`
 			SignerName   string `json:"signer_name"`
 			Signature    string `json:"signature"`
+			Ttl          uint32 `json:"ttl"`
 		}{
 			RType:        rrType,
 			RName:        t.Hdr.Name,
@@ -260,6 +281,7 @@ func (rr ReadableRR) MarshalJSON() ([]byte, error) {
 			KeyTag:       t.KeyTag,
 			SignerName:   t.SignerName,
 			Signature:    t.Signature,
+			Ttl:          t.Hdr.Ttl,
 		})
 	case *dns.NAPTR:
 		return json.Marshal(&struct {
@@ -271,6 +293,7 @@ func (rr ReadableRR) MarshalJSON() ([]byte, error) {
 			Flags        string `json:"flags"`
 			Regexp       string `json:"regexp"`
 			Replacement  string `json:"replacement"`
+			Ttl          uint32 `json:"ttl"`
 		}{
 			RType:        rrType,
 			RName:        t.Hdr.Name,
@@ -280,14 +303,17 @@ func (rr ReadableRR) MarshalJSON() ([]byte, error) {
 			Flags:        t.Flags,
 			Regexp:       t.Regexp,
 			Replacement:  t.Replacement,
+			Ttl:          t.Hdr.Ttl,
 		})
 	default:
 		return json.Marshal(&struct {
 			RType string `json:"rtype"`
 			RData string `json:"rdata"`
+			TTL   uint32 `json:"ttl"`
 		}{
 			RType: rrType,
 			RData: rr.String(),
+			TTL:   rr.Header().Ttl,
 		})
 	}
 }
