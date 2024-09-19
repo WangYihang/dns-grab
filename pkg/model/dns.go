@@ -65,12 +65,12 @@ func (h ReadableMsgHdr) MarshalJSON() ([]byte, error) {
 
 func (q ReadableQuestion) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
-		Name        string `json:"name"`
+		QName       string `json:"qname"`
 		NameReverse string `json:"name_reverse"`
 		QType       string `json:"qtype"`
 		QClass      string `json:"qclass"`
 	}{
-		Name:        q.Name,
+		QName:       q.Name,
 		NameReverse: util.ReverseString(q.Name),
 		QType:       dns.TypeToString[q.Qtype],
 		QClass:      dns.ClassToString[q.Qclass],
